@@ -50,6 +50,29 @@ public class WeatherDataServiceImpl implements IWeatherDataService {
         return doGetWeather(uri);
     }
 
+    @Override
+    public void syncDataByCityId(String cityId) {
+        String uri = WEATHER_URI + "?citykey=" + cityId;
+        this.saveWeatherData(uri);
+    }
+
+    /**
+     *  把天气数据放到缓存中
+     * @param uri
+     */
+    private void saveWeatherData(String uri){
+        String strBody = null;
+        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+        ResponseEntity<String> responseString = restTemplate.getForEntity(uri, String.class);
+        if (responseString.getStatusCodeValue() == CommonConst.RESPONSE_SUCCESS) {
+            strBody = responseString.getBody();
+        }
+
+        //将查询结果写入缓存中
+        ops.set(uri,strBody,CommonConst.RedisConst.TIME_OUT, TimeUnit.SECONDS);
+        log.info("sync data success");
+    }
+
 
     /**
      * 获取天气数据

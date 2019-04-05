@@ -2,10 +2,7 @@ package com.micro.weather.basic.vo;
 
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -17,6 +14,6 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CityList {
 
-    @XmlAttribute(name = "d")
+    @XmlElement(name = "d")
     private List<City> cityList;
 }
