@@ -5,12 +5,16 @@ package com.micro.weather.basic.constants;
  * @create 2019-04-05-14:06
  */
 public class CommonConst {
-    //状态码
+    /**
+     * 状态码
+     */
     public static final Integer RESPONSE_SUCCESS = 200;
 
 
     public static class RedisConst {
-
-        public static final Long TIME_OUT = 10L;
+        /**
+         * 过期时间
+         */
+        public static final Long TIME_OUT = 60L*30;
     }
 }

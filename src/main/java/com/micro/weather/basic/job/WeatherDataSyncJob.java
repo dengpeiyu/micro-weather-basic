@@ -17,7 +17,6 @@ import java.util.List;
  * @create 2019-04-05-17:55
  */
 @Slf4j
-@Component
 public class WeatherDataSyncJob extends QuartzJobBean {
 
     @Autowired
@@ -29,8 +28,10 @@ public class WeatherDataSyncJob extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         log.info("weather data sync job");
         List<City> cityList = iCityDataService.listCity();
-        for (City city: cityList) {
+   /*     for (City city : cityList) {
             iWeatherDataService.syncDataByCityId(city.getCityId());
         }
+*/
+        log.info("weather data sync job end!");
     }
 }
